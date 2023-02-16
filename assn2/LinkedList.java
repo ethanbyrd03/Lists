@@ -63,7 +63,7 @@ public class LinkedList implements List {
     int i = 0;
     if(current.getValue() > elt) {ins(0,elt); return true;}
     while (current != null) {
-      if (current.getValue() <= elt && current.getNext().getValue() > elt) {ins(i, elt); return true;}
+      if (current.getValue() <= elt && current.getNext().getValue() > elt) {ins(i + 1, elt); return true;}
       current = current.getNext();
       i++;
     }
