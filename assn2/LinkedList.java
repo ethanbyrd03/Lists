@@ -52,8 +52,7 @@ public class LinkedList implements List {
       index++;
       current = current.getNext();
     }
-    return -1;
-    }
+    return -1;}
 
 
   public boolean inSort ( double elt ) {
