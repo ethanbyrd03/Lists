@@ -25,7 +25,7 @@ public class LinkedList implements List {
       Node current = head;
       int i = 0;
       while(current != null) {
-        if (i == index) {current.setValue(element);}
+        if (i == index) {current.setValue(element); return true;}
         current = current.getNext();
         i++;
       }
@@ -38,18 +38,18 @@ public class LinkedList implements List {
 
     /*Your code here */
     Node current = head;
-    int index = 0;
+    int i = 0;
     while(current != null) {
       if(current.getValue() == element) {
-        int index2 = index + 1;
+        int index2 = i + 1;
         Node current2 = current.getNext();
-        while(current != null) {
+        while(current2 != null) {
           if(current2.getValue() == element) {return index2;}
           index2++;
-          current2.getNext();
+          current2 = current2.getNext();
         }
-        return index; }
-      index++;
+        return i; }
+      i++;
       current = current.getNext();
     }
     return -1;}
@@ -60,12 +60,12 @@ public class LinkedList implements List {
 
     /*Your code here */
     Node current = head;
-    int index = 0;
+    int i = 0;
     if(current.getValue() > elt) {ins(0,elt); return true;}
     while (current != null) {
-      if (current.getValue() <= elt && current.getNext().getValue() > elt) {ins(index, elt); return true;}
+      if (current.getValue() <= elt && current.getNext().getValue() > elt) {ins(i, elt); return true;}
       current = current.getNext();
-      index++;
+      i++;
     }
     return true;
   }
