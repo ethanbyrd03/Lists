@@ -60,7 +60,7 @@ public class ArrayList implements List {
       if(this.elts[0] > elt) {ins(0, elt); return true;}
       for(int i=0; i<=this.size; i++)
           if(this.elts[i] <= elt && this.elts[i + 1] > elt) {
-              ins(i, elt); return true;
+              ins(i + 1, elt); return true;
           }
       ins(this.size-1, elt); return true;
       }
