@@ -21,7 +21,15 @@ public class LinkedList implements List {
       //Hint: Remember that we start indexing with 0 rather than 1.
 
       /*Your code here */
-      return false;  //Remove this when you implement the method!
+      if(index<0 || index>=this.size) { return false; }
+      Node current = head;
+      int i = 0;
+      while(current != null) {
+        if (i == index) {current.setValue(element);}
+        current = current.getNext();
+        i++;
+      }
+      return true;
   }
       
   public int findLast ( double element ) {
@@ -29,14 +37,38 @@ public class LinkedList implements List {
     //Hint: Make sure you understand how this is different from find
 
     /*Your code here */
-    return -1;  //Remove this when you implement the method!
-  }
+    Node current = head;
+    int index = 0;
+    while(current != null) {
+      if(current.getValue() == element) {
+        int index2 = index + 1;
+        Node current2 = current.getNext();
+        while(current != null) {
+          if(current2.getValue() == element) {return index2;}
+          index2++;
+          current2.getNext();
+        }
+        return index; }
+      index++;
+      current = current.getNext();
+    }
+    return -1;
+    }
+
 
   public boolean inSort ( double elt ) {
     //See List.java for a description of the method's behavior and examples.
 
     /*Your code here */
-    return false;  //Remove this when you implement the method!
+    Node current = head;
+    int index = 0;
+    if(current.getValue() > elt) {ins(0,elt); return true;}
+    while (current != null) {
+      if (current.getValue() <= elt && current.getNext().getValue() > elt) {ins(index, elt); return true;}
+      current = current.getNext();
+      index++;
+    }
+    return true;
   }
    
   public boolean bubbleIns  ( double elt ) {
@@ -44,7 +76,13 @@ public class LinkedList implements List {
     //Hint: Do any of the methods already provided to you help?
 
     /*Your code here */
-    return false;  //Remove this when you implement the method!
+    if (this.find(elt) != -1) {
+      this.rem(this.find(elt));
+      this.ins(0, elt);
+      return true;
+    }
+    this.ins(0, elt);
+    return true;
   }
   
   /* Implementation given to you. Do not modify below this. */

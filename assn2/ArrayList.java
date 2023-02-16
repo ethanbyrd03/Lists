@@ -33,10 +33,11 @@ public class ArrayList implements List {
       //Hint: Ask yourself how this is different from the "ins" method.
       //Hint: Remember that we start indexing with 0 rather than 1.
 
-      /*Your code here */	
-	
-	  
-    return false;  //Remove this when you implement the method!
+      /*Your code here */
+      if (index<0 || index>size || index>=this.MAX) { return false; }
+      this.elts[index] = element;
+      return true;
+
   }
       
   public int findLast ( double element ) {
@@ -44,17 +45,27 @@ public class ArrayList implements List {
     //Hint: Make sure you understand how this is different from find
 	  
     /*Your code here */
-
-    return -1;  //Remove this when you implement the method!
+      int loc = -1;
+      for (int i=this.size; i>=0; i--) {
+          if (this.elts[i]==element) { loc=i; break; }
+      }
+      return loc;
   }
 
   public boolean inSort ( double elt ) {
     //See List.java for a description of the method's behavior and examples.
 
     /*Your code here */
-	  
-    return false;  //Remove this when you implement the method!
-  }
+      if(this.size == this.MAX) { return false; }
+      if(this.elts[0] > elt) {ins(0, elt); return true;}
+      for(int i=0; i<=this.size; i++)
+          if(this.elts[i - 1] <= elt && this.elts[i] > elt) {
+              ins(i, elt); return true;
+          }
+      ins(this.size-1, elt); return true;
+      }
+
+
    
   public boolean bubbleIns  ( double elt ) {
 
@@ -62,8 +73,13 @@ public class ArrayList implements List {
     //Hint: Do any of the methods you're already given help? 
 
     /*Your code here */
-	  
-    return false;  //Remove this when you implement the method!
+      if (this.find(elt) != -1) {
+          this.rem(this.find(elt));
+          this.ins(0, elt);
+          return true;
+      }
+      if (this.size == this.MAX) {return false;}
+      this.ins(0, elt); return true;
   }
 	
    /* Implementation given to you. Do not modify below this. */
